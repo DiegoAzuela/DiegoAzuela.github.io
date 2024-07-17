@@ -3081,7 +3081,6 @@
 		}
 
 /* Page Wrapper + Menu */
-
 	#page-wrapper {
 		-moz-transition: opacity 0.5s ease;
 		-webkit-transition: opacity 0.5s ease;
@@ -3090,7 +3089,6 @@
 		opacity: 1;
 		padding-top: 3em;
 	}
-
 		#page-wrapper:before {
 			background: transparent;
 			content: '';
