@@ -1402,11 +1402,9 @@
 	}
 
 /* Basic */
-
 	@-ms-viewport {
 		width: device-width;
 	}
-
 	body {
 		background: #2e3842;
 	}
@@ -2213,7 +2211,6 @@
 			}
 
 /* Button */
-
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
@@ -2354,7 +2351,6 @@
 		}
 
 /* Features */
-
 	.features {
 		display: -moz-flex;
 		display: -webkit-flex;
@@ -2372,7 +2368,6 @@
 		padding: 0;
 		width: 100%;
 	}
-
 		.features li {
 			padding: 4em 4em 2em 6em ;
 			display: block;
@@ -2478,7 +2473,6 @@
 			}
 
 /* Spotlight */
-
 	.spotlight {
 		-moz-align-items: center;
 		-webkit-align-items: center;
@@ -2489,7 +2483,6 @@
 		display: -ms-flex;
 		display: flex;
 	}
-
 		.spotlight .image {
 			-moz-order: 1;
 			-webkit-order: 1;
@@ -2513,7 +2506,6 @@
 			max-width: 48em;
 			width: 60%;
 		}
-
 		.spotlight:nth-child(2n) {
 			-moz-flex-direction: row-reverse;
 			-webkit-flex-direction: row-reverse;
@@ -2605,41 +2597,30 @@
 		}
 
 /* Wrapper */
-
 	.wrapper {
 		padding: 6em 0 4em 0 ;
 	}
-
 		.wrapper > .inner {
 			width: 60em;
 			margin: 0 auto;
 		}
-
 			@media screen and (max-width: 1280px) {
-
 				.wrapper > .inner {
 					width: 90%;
 				}
-
 			}
-
 			@media screen and (max-width: 980px) {
-
 				.wrapper > .inner {
 					width: 100%;
 				}
-
 			}
-
 		.wrapper.alt {
 			padding: 0;
 		}
-
 		.wrapper.style1 {
 			background-color: #434343ff;
 			color: #c7ebe8;
 		}
-
 			.wrapper.style1 strong, .wrapper.style1 b {
 				color: #ffffff;
 			}
@@ -2764,7 +2745,6 @@
 				box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.125);
 				color: #ffffff;
 			}
-
 				.wrapper.style1 input[type="submit"]:hover,
 				.wrapper.style1 input[type="reset"]:hover,
 				.wrapper.style1 input[type="button"]:hover,
@@ -2772,7 +2752,6 @@
 				.wrapper.style1 .button:hover {
 					background-color: rgba(255, 255, 255, 0.075);
 				}
-
 				.wrapper.style1 input[type="submit"]:active,
 				.wrapper.style1 input[type="reset"]:active,
 				.wrapper.style1 input[type="button"]:active,
@@ -2780,60 +2759,45 @@
 				.wrapper.style1 .button:active {
 					background-color: rgba(255, 255, 255, 0.2);
 				}
-
 			@media screen and (max-width: 736px) {
-
 				.wrapper.style1 .features li {
 					border-top-color: rgba(0, 0, 0, 0.125);
 				}
-
 			}
-
 		.wrapper.style2 {
 			background-color: #2e3842;
 		}
-
 		.wrapper.style3 {
 			background-color: #434343ff;
 			color: #d3d4e4;
 		}
-
 			.wrapper.style3 strong, .wrapper.style3 b {
 				color: #ffffff;
 			}
-
 			.wrapper.style3 h2, .wrapper.style3 h3, .wrapper.style3 h4, .wrapper.style3 h5, .wrapper.style3 h6 {
 				color: #ffffff;
 			}
-
 			.wrapper.style3 hr {
 				border-color: rgba(0, 0, 0, 0.125);
 			}
-
 			.wrapper.style3 blockquote {
 				border-color: rgba(0, 0, 0, 0.125);
 			}
-
 			.wrapper.style3 code {
 				background: rgba(255, 255, 255, 0.075);
 			}
-
 			.wrapper.style3 header p {
 				color: #b9bad3;
 			}
-
 			.wrapper.style3 header.major h2, .wrapper.style3 header.major h3, .wrapper.style3 header.major h4, .wrapper.style3 header.major h5, .wrapper.style3 header.major h6 {
 				border-color: rgba(0, 0, 0, 0.125);
 			}
-
 			.wrapper.style3 header.major p {
 				color: #d3d4e4;
 			}
-
 			.wrapper.style3 label {
 				color: #ffffff;
 			}
-
 			.wrapper.style3 input[type="text"],
 			.wrapper.style3 input[type="password"],
 			.wrapper.style3 input[type="email"],
@@ -3102,17 +3066,12 @@
 				.wrapper.style5 .features li {
 					border-top-color: #dfdfdf;
 				}
-
 			}
-
 		@media screen and (max-width: 980px) {
-
 			.wrapper {
 				padding: 4em 3em 2em 3em ;
 			}
-
 		}
-
 		@media screen and (max-width: 736px) {
 
 			.wrapper {
