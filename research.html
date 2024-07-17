@@ -6,14 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="shortcut icon" type="image/png" href="images/LogoDiegoAzuela_2.png" />
-    <!-- Add any additional CSS styles for positioning images here -->
     <style>
+        /* Updated CSS for two-column layout */
+        .research-section {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .research-text {
+            flex: 1;
+            padding-right: 20px; /* Adjust spacing between text and images */
+        }
+
         .research-image {
-            float: right;
-            margin-left: 20px;
-            margin-bottom: 10px;
-            max-width: 200px;
-            height: auto;
+            flex: 1;
+            text-align: center;
+        }
+
+        .research-image img {
+            max-width: 100%; /* Ensure images don't overflow */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 10px; /* Adjust vertical spacing */
         }
     </style>
 </head>
@@ -59,38 +73,51 @@
         </header>
         <section class="wrapper style5">
             <div class="inner">
-                <section>
-                    <h2>Conferences</h2>
-                    <p>
-                        <b>
-                            Speaker at the first National Congress of Space Activities (CONACES) organized by the Mexican Aerospace Agency presenting Synthesis of Bio-nano
-                            Polymers to Improve the Surface Barrier. Electronic and control system design for a year-long aerospace experiment testing food preservation solution.
-                            <br />
-                            <!-- Image for "Speaker at the first National Congress" -->
-                            <img class="research-image" src="images/Bartolomeo_BlankBackground.jpg" alt="Speaker at CONACES">
-                        </b>
-                        <br />
-                        <br />
-                    </p>
+                <section class="research-section">
+                    <div class="research-text">
+                        <h2>Conferences</h2>
+                        <p>
+                            <b>
+                                "SPES: Synthesis of Bio-nano polymers for Enhanced Surface Barrier Properties in Space" 
+								<br /> Presented the SPES project at the first National Congress of Space Activities (CONACES) organized by the Mexican Aerospace Agency. Electronic and control system design for a year-long aerospace experiment testing food preservation solution.
+								<li><a href="Bartolomeo_Finalists.html">Pre-selected project as one of the three projects for the first cycle of "United Nations/Airbus on the Accessing Space with the ISS Bartolomeo Platform"</a></li>
+                            </b>
+							<br />
+                        </p>
+                    </div>
+                    <div class="research-image">
+                        <!-- Image for "Speaker at the first National Congress" -->
+                        <img src="images/Bartolomeo_BlankBackground.jpg" alt="Speaker at CONACES">
+                    </div>
                 </section>
                 <!-- CTA -->
-                <section>
-                    <h2>Publications</h2>
-                    <p>
-                        <b>
-                            Jeong, S.-H., et al. "Intelligent In situ Printing of Multimaterial Bioinks for First-Aid Wound Care Guided by Eye-In-Hand Robot Technology." Advanced Materials Technologies. <a href="https://doi.org/10.1002/admt.202400060" target="_blank">https://doi.org/10.1002/admt.202400060</a>
-                            <!-- Image for "Jeong, S.-H., et al." -->
-                            <img class="research-image" src="images/Advanced_Technologies.jpg" alt="Jeong, S.-H., et al.">
-                        </b>
+                <section class="research-section">
+                    <div class="research-text">
+                        <h2>Publications</h2>
+                        <p>
+                            <b>
+                                Jeong, S.-H., et al. "Intelligent In situ Printing of Multimaterial Bioinks for First-Aid Wound Care Guided by Eye-In-Hand Robot Technology." Advanced Materials Technologies. <a href="https://doi.org/10.1002/admt.202400060" target="_blank">https://doi.org/10.1002/admt.202400060</a>
+                            </b>
+                            <br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+                            <br />
+                            <b>
+                                Rezaei, Z., et al. "Noninvasive and Continuous Monitoring of On-Chip Stem Cell Osteogenesis Using a Reusable Electrochemical Immunobiosensor." ACS Sensors Article. <a href="https://doi.org/10.1021/acssensors.3c02165" target="_blank">https://doi.org/10.1021/acssensors.3c02165</a>
+                            </b>
+                        </p>
+                    </div>
+                    <div class="research-image">
+                        <!-- Image for "Jeong, S.-H., et al." -->
+                        <img src="images/Advanced_Technologies.jpg" alt="Jeong, S.-H., et al.">
                         <br />
                         <br />
-                        <b>
-                            Rezaei, Z., et al. "Noninvasive and Continuous Monitoring of On-Chip Stem Cell Osteogenesis Using a Reusable Electrochemical Immunobiosensor." ACS Sensors Article. <a href="https://doi.org/10.1021/acssensors.3c02165" target="_blank">https://doi.org/10.1021/acssensors.3c02165</a>
-                            <!-- Image for "Rezaei, Z., et al." -->
-                            <img class="research-image" src="images/ACS_Sensors.jpg" alt="Rezaei, Z., et al.">
-                        </b>
-                        <br />
-                    </p>
+                        <!-- Image for "Rezaei, Z., et al." -->
+                        <img src="images/ACS_Sensors.jpg" alt="Rezaei, Z., et al.">
+                    </div>
                 </section>
             </div>
         </section>
