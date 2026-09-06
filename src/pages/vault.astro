@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="◆" description="" bareFooter>
+  <section class="vault">
+    <div class="vault__inner">
+      <p class="eyebrow">You found it</p>
+
+      <form id="vault-form" class="vault__form">
+        <label for="vault-key">The platform that almost took my experiment to orbit</label>
+        <div class="vault__row">
+          <input
+            id="vault-key"
+            name="key"
+            type="text"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="one word"
+          />
+          <button type="submit">Open</button>
+        </div>
+        <p id="vault-msg" class="vault__msg" aria-live="polite"></p>
+      </form>
+
+      <div id="vault-prize" class="vault__prize" hidden>
+        <h1>Nice.</h1>
+        <p class="prose">
+          If you got here you either know me or you read carefully. Either way — thanks for
+          looking around. Most of what I build I can’t show, so a site like this is the
+          closest thing to a portfolio I get. If any of it was interesting, email me.
+        </p>
+        <p class="vault__ps">
+          Prize: the pre-launch checklist I keep taped above my desk —
+          <em>“slow is smooth, smooth is fast.”</em>
+        </p>
+        <p><a href="/" class="link-underline">Back to the start</a></p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .vault {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 6rem 1.5rem;
+  }
+  .vault__inner { width: min(34rem, 100%); }
+  .vault__form label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-dim);
+    margin: 1rem 0 0.8rem;
+  }
+  .vault__row { display: flex; gap: 0.6rem; }
+  .vault__row input {
+    flex: 1;
+    background: var(--bg-1);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.9rem;
+    color: var(--text);
+    font: inherit;
+  }
+  .vault__row input::placeholder { color: var(--text-muted); }
+  .vault__row button {
+    background: var(--text);
+    color: var(--bg-0);
+    border: 0;
+    border-radius: var(--radius-sm);
+    padding: 0 1.1rem;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s var(--ease);
+  }
+  .vault__row button:active { transform: scale(0.97); }
+  .vault__msg { margin-top: 0.7rem; font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); min-height: 1.2em; }
+  .vault__prize h1 { font-size: var(--step-3); margin-bottom: 1rem; }
+  .vault__ps { margin-top: 1.2rem; color: var(--text-muted); }
+  .vault__prize a { font-family: var(--font-mono); font-size: var(--step--1); display: inline-block; margin-top: 1.5rem; }
+</style>
+
+<script>
+  const form = document.getElementById('vault-form') as HTMLFormElement;
+  const input = document.getElementById('vault-key') as HTMLInputElement;
+  const msg = document.getElementById('vault-msg')!;
+  const prize = document.getElementById('vault-prize')!;
+  // not real security — this is a static site and that's the joke
+  const ANSWER = 'bartolomeo';
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = input.value.trim().toLowerCase();
+    if (val === ANSWER) {
+      form.hidden = true;
+      prize.hidden = false;
+    } else if (val) {
+      msg.textContent = 'Not it. Hint: it’s an ESA platform on the Columbus module.';
+      input.select();
+    }
+  });
+</script>

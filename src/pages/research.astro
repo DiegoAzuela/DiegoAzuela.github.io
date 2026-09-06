@@ -1,0 +1,151 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import { publications, talks } from '../data/publications.ts';
+---
+
+<Base
+  title="Research"
+  description="Two peer-reviewed publications from Harvard Medical School and a space-experiment talk at the Mexican Aerospace Agency."
+>
+  <PageHeader
+    eyebrow="Publications & talks"
+    title="Research"
+    intro="A robotics and instrumentation internship at Harvard Medical School and Brigham and Women’s Hospital, plus a space-experiment project presented at the Mexican Aerospace Agency."
+  />
+
+  <div class="container research">
+    <section class="research__block" data-reveal>
+      <h2 class="research__label">Publications</h2>
+      <ul class="pub-list">
+        {
+          publications.map((p) => (
+            <li class="pub">
+              {p.image && (
+                <a class="pub__thumb" href={p.url} target="_blank" rel="noopener">
+                  <img src={p.image} alt={`Figure from ${p.venue}`} loading="lazy" />
+                </a>
+              )}
+              <div class="pub__body">
+                <p class="pub__venue">
+                  {p.venue} · {p.year}
+                </p>
+                <h3 class="pub__title">
+                  <a href={p.url} target="_blank" rel="noopener" class="link-underline">
+                    {p.title}
+                  </a>
+                </h3>
+                <p class="pub__authors">{p.authors}</p>
+                <p class="pub__role">{p.role}</p>
+                {p.doi && (
+                  <p class="pub__doi">
+                    <a href={p.url} target="_blank" rel="noopener">
+                      doi:{p.doi} <Icon name="arrow-up-right" size={13} />
+                    </a>
+                  </p>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="research__block" data-reveal>
+      <h2 class="research__label">Talks & recognition</h2>
+      <ul class="talk-list">
+        {
+          talks.map((t) => (
+            <li class="talk">
+              <div class="talk__meta">
+                <p>{t.year}</p>
+              </div>
+              <div class="talk__body">
+                <h3>{t.title}</h3>
+                <p class="talk__event">
+                  {t.event} · {t.org}
+                </p>
+                <p class="talk__desc">{t.body}</p>
+                {t.image && <img class="talk__img" src={t.image} alt={t.title} loading="lazy" />}
+                {t.link && (
+                  <p class="talk__link">
+                    <a href={t.link.href} class="link-underline">
+                      {t.link.label}
+                    </a>
+                  </p>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <p class="research__note" data-reveal>
+      A 3D render of the 6-DOF robotic arm and photos from the CONACES talk are on the way.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .research { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+  .research__block { padding-block: clamp(2rem, 5vw, 3.5rem); border-top: 1px solid var(--line); }
+  .research__block:first-child { border-top: 0; }
+  .research__label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .pub-list, .talk-list { list-style: none; padding: 0; display: grid; gap: 2.5rem; }
+
+  .pub { display: grid; grid-template-columns: 12rem 1fr; gap: 2rem; }
+  .pub__thumb {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    overflow: clip;
+    aspect-ratio: 4 / 3;
+    background: var(--bg-2);
+  }
+  .pub__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .pub__venue { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .pub__title { font-size: var(--step-1); margin: 0.4rem 0 0.5rem; }
+  .pub__authors { color: var(--text-dim); }
+  .pub__role { color: var(--text-muted); font-size: var(--step-0); margin-top: 0.5rem; max-width: var(--measure); }
+  .pub__doi { margin-top: 0.6rem; font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .pub__doi a { display: inline-flex; align-items: center; gap: 0.3rem; }
+
+  .talk { display: grid; grid-template-columns: 12rem 1fr; gap: 2rem; }
+  .talk__meta { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .talk__body h3 { font-size: var(--step-1); }
+  .talk__event { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); margin: 0.3rem 0 0.7rem; }
+  .talk__desc { color: var(--text-dim); max-width: var(--measure); }
+  .talk__img {
+    margin-top: 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    max-width: 26rem;
+  }
+  .talk__link { margin-top: 0.9rem; font-family: var(--font-mono); font-size: var(--step--1); }
+
+  .research__note {
+    margin-top: 3rem;
+    padding: 1rem 1.2rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 720px) {
+    .pub, .talk { grid-template-columns: 1fr; gap: 1rem; }
+    .pub__thumb { max-width: 12rem; }
+  }
+</style>

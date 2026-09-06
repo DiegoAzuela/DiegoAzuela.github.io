@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# I'd rather not feed the scrapers. Nothing personal.
+User-agent: GPTBot
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+User-agent: PerplexityBot
+Disallow: /
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://diegoazuela.com/sitemap-index.xml

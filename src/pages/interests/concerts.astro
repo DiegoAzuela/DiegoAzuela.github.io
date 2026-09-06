@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { concerts } from '../../data/concerts.ts';
+
+const sorted = [...concerts].sort((a, b) => b.date.localeCompare(a.date));
+const fmt = (d: string) =>
+  new Date(d + 'T00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+
+<Base title="Concerts" description="Shows Diego has been to.">
+  <PageHeader
+    eyebrow="Interests"
+    title="Concerts"
+    intro="Live music, mostly between the Bay Area, Mexico, and Puerto Rico."
+    back={{ href: '/interests', label: 'Interests' }}
+  />
+
+  <div class="container concerts">
+    <ol class="shows" data-reveal>
+      {
+        sorted.map((c) => (
+          <li class="show">
+            <div class="show__meta">
+              <span class="show__date">{fmt(c.date)}</span>
+              <span class="show__place">{c.place}</span>
+            </div>
+            <span class="show__artist">{c.artist}</span>
+            {c.image && (
+              <div class="show__img">
+                <img src={c.image} alt={`${c.artist} — ${c.place}`} loading="lazy" />
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</Base>
+
+<style>
+  .concerts { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+  .shows { list-style: none; padding: 0; }
+  .show {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    gap: 1rem 2rem;
+    align-items: start;
+    padding: 1.6rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .show:last-child { border-bottom: 1px solid var(--line); }
+  .show__meta { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); display: grid; gap: 0.2rem; }
+  .show__artist { font-size: var(--step-2); font-weight: 600; letter-spacing: -0.02em; }
+  .show__img {
+    grid-column: 2;
+    margin-top: 0.8rem;
+    max-width: 24rem;
+    border-radius: var(--radius);
+    overflow: clip;
+    border: 1px solid var(--line);
+  }
+  .show__img img { width: 100%; display: block; }
+
+  @media (max-width: 640px) {
+    .show { grid-template-columns: 1fr; }
+    .show__img { grid-column: 1; }
+  }
+</style>

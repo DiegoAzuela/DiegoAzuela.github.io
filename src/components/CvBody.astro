@@ -1,0 +1,143 @@
+---
+import { experience, research, education, skills } from '../data/cv.ts';
+---
+
+<section class="cv__block" data-reveal>
+  <h3 class="cv__block-title">Experience</h3>
+  {
+    experience.map((r) => (
+      <article class="entry">
+        <div class="entry__meta">
+          <p class="entry__period">{r.period}</p>
+          <p class="entry__loc">{r.location}</p>
+        </div>
+        <div class="entry__body">
+          <h4>
+            {r.title} <span>· {r.org}</span>
+          </h4>
+          {r.group && <p class="entry__group">{r.group}</p>}
+          <ul>
+            {r.points.map((p) => (
+              <li>{p}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))
+  }
+</section>
+
+<section class="cv__block" data-reveal>
+  <h3 class="cv__block-title">Research</h3>
+  {
+    research.map((r) => (
+      <article class="entry">
+        <div class="entry__meta">
+          <p class="entry__period">{r.period}</p>
+          <p class="entry__loc">{r.location}</p>
+        </div>
+        <div class="entry__body">
+          <h4>
+            {r.title} <span>· {r.org}</span>
+          </h4>
+          <ul>
+            {r.points.map((p) => (
+              <li>{p}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))
+  }
+  <p class="cv__more">
+    <a href="/research" class="link-underline">Publications &amp; talks →</a>
+  </p>
+</section>
+
+<section class="cv__block" data-reveal>
+  <h3 class="cv__block-title">Education</h3>
+  {
+    education.map((e) => (
+      <article class="entry">
+        <div class="entry__meta">
+          <p class="entry__period">{e.period}</p>
+        </div>
+        <div class="entry__body">
+          <h4>
+            {e.degree} <span>· {e.org}</span>
+          </h4>
+          <p class="entry__group">{e.detail}</p>
+        </div>
+      </article>
+    ))
+  }
+</section>
+
+<section class="cv__block" data-reveal>
+  <h3 class="cv__block-title">Technical skills</h3>
+  <dl class="skills">
+    {
+      skills.map((s) => (
+        <div class="skills__row">
+          <dt>{s.group}</dt>
+          <dd>{s.items}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<style>
+  .cv__block { padding-block: clamp(2rem, 5vw, 3.25rem); border-top: 1px solid var(--line); }
+  .cv__block:first-child { border-top: 0; }
+  .cv__block-title {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .entry {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 2rem;
+    padding-block: 1.5rem;
+  }
+  .entry + .entry { border-top: 1px solid var(--line); }
+  .entry__meta { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .entry__loc { margin-top: 0.2rem; }
+  .entry__body h4 { font-size: var(--step-1); font-weight: 600; }
+  .entry__body h4 span { color: var(--text-muted); font-weight: 400; }
+  .entry__group {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+  }
+  .entry__body ul {
+    margin-top: 1rem;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.7rem;
+    color: var(--text-dim);
+  }
+  .entry__body li { padding-left: 0.3rem; }
+  .entry__body li::marker { color: var(--accent); }
+  .cv__more { margin-top: 1.5rem; font-family: var(--font-mono); font-size: var(--step--1); }
+  .skills__row {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 2rem;
+    padding-block: 1rem;
+  }
+  .skills__row + .skills__row { border-top: 1px solid var(--line); }
+  .skills dt { font-weight: 500; }
+  .skills dd { color: var(--text-dim); }
+  @media (max-width: 720px) {
+    .entry, .skills__row { grid-template-columns: 1fr; gap: 0.6rem; }
+    .entry__meta { display: flex; gap: 1rem; }
+    .entry__loc { margin-top: 0; }
+  }
+</style>

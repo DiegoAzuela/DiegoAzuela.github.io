@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
         ))
       }
     </div>
-    <p class="site-footer__copy">© {year}</p>
+    <p class="site-footer__copy"><a href="/vault" aria-label="©">©</a> {year}</p>
   </div>
 </footer>
 
@@ -59,4 +59,6 @@ const year = new Date().getFullYear();
     font-size: var(--step--1);
     color: var(--text-muted);
   }
+  .site-footer__copy a { text-decoration: none; transition: color 0.2s var(--ease); }
+  .site-footer__copy a:hover { color: var(--accent); }
 </style>

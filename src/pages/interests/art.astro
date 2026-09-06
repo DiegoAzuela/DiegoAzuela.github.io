@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { paintings } from '../../data/paintings.ts';
+
+const fmt = (d?: string) =>
+  d ? new Date(d + 'T00:00').toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : '';
+---
+
+<Base title="Art" description="Paintings by Diego Azuela.">
+  <PageHeader
+    eyebrow="Interests"
+    title="Art"
+    intro="Oil and acrylic, mostly at night, mostly about music and people."
+    back={{ href: '/interests', label: 'Interests' }}
+  />
+
+  <div class="container art">
+    <div class="grid grid--2" data-reveal>
+      {
+        paintings.map((p) => (
+          <figure class="canvas">
+            <div class="canvas__frame">
+              <img src={p.image} alt={p.title} loading="lazy" />
+            </div>
+            <figcaption>
+              <span class="canvas__title">{p.title}</span>
+              {p.date && <span class="canvas__date">{fmt(p.date)}</span>}
+              {p.note && <span class="canvas__note">{p.note}</span>}
+            </figcaption>
+          </figure>
+        ))
+      }
+
+      <figure class="canvas canvas--easel" data-reveal>
+        <div class="easel" aria-hidden="true">
+          <svg viewBox="0 0 200 220" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <path d="M40 20h120v90H40z" fill="var(--bg-2)" />
+            <path d="M100 110v70M100 175l-55 30M100 175l55 30M55 40h90" stroke-width="2" opacity="0.6" />
+            <path d="M45 130h110" />
+          </svg>
+        </div>
+        <figcaption>
+          <span class="canvas__title">Next one</span>
+          <span class="canvas__note">Blank canvas, waiting.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .art { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+  .canvas figcaption { margin-top: 1rem; display: grid; gap: 0.25rem; }
+  .canvas__frame {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: clamp(0.6rem, 2vw, 1.1rem);
+    box-shadow: var(--shadow);
+  }
+  .canvas__frame img { width: 100%; border-radius: 2px; }
+  .canvas__title { font-weight: 600; font-size: var(--step-1); }
+  .canvas__date { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .canvas__note { color: var(--text-dim); }
+
+  .canvas--easel .easel {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+  }
+  .canvas--easel svg { width: 55%; }
+</style>
