@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "cv:pdf": "node scripts/generate-cv-pdf.mjs",
     "astro": "astro"
   },
   "dependencies": {
