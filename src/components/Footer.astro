@@ -1,0 +1,62 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site.ts';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="site-footer__name">{site.name}</p>
+      <p class="site-footer__meta">{site.role} · {site.location}</p>
+    </div>
+    <div class="site-footer__socials">
+      {
+        site.socials.map((s) => (
+          <a
+            href={s.href}
+            target={s.href.startsWith('http') ? '_blank' : undefined}
+            rel={s.href.startsWith('http') ? 'noopener' : undefined}
+            aria-label={s.label}
+          >
+            <Icon name={s.icon as any} size={18} />
+          </a>
+        ))
+      }
+    </div>
+    <p class="site-footer__copy">© {year}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem;
+  }
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .site-footer__name { font-weight: 500; }
+  .site-footer__meta {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+  .site-footer__socials {
+    display: flex;
+    gap: 1.1rem;
+    color: var(--text-muted);
+  }
+  .site-footer__socials a { transition: color 0.2s var(--ease); }
+  .site-footer__socials a:hover { color: var(--accent); }
+  .site-footer__copy {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+</style>
