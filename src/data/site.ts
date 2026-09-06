@@ -1,7 +1,7 @@
 export const site = {
   name: 'Diego A Azuela R',
   fullName: 'Diego Arnoldo Azuela Rosas',
-  role: 'Software Engineer — Embedded & Systems',
+  role: 'Engineer — Test & Systems',
   location: 'San Francisco, CA',
   email: 'diego.azuela@gmail.com',
   description:

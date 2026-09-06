@@ -53,24 +53,35 @@ const fmt = (d?: string) =>
   .art { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
   .canvas figcaption { margin-top: 1rem; display: grid; gap: 0.25rem; }
   .canvas__frame {
-    background: var(--bg-1);
+    position: relative;
+    background: var(--bg-2);
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    padding: clamp(0.6rem, 2vw, 1.1rem);
     box-shadow: var(--shadow);
+    aspect-ratio: 1 / 1;
   }
-  .canvas__frame img { width: 100%; border-radius: 2px; }
+  .canvas__frame img {
+    position: absolute;
+    inset: clamp(1rem, 3vw, 1.8rem);
+    width: auto;
+    height: auto;
+    max-width: calc(100% - 2 * clamp(1rem, 3vw, 1.8rem));
+    max-height: calc(100% - 2 * clamp(1rem, 3vw, 1.8rem));
+    margin: auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 14px rgba(10, 11, 13, 0.5);
+  }
   .canvas__title { font-weight: 600; font-size: var(--step-1); }
   .canvas__date { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
   .canvas__note { color: var(--text-dim); }
 
   .canvas--easel .easel {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     display: grid;
     place-items: center;
     border: 1px dashed var(--line-strong);
     border-radius: var(--radius-sm);
     color: var(--text-muted);
   }
-  .canvas--easel svg { width: 55%; }
+  .canvas--easel svg { width: 45%; }
 </style>

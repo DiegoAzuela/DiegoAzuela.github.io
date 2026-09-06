@@ -1,15 +1,22 @@
+export interface Thread {
+  org: string;
+  period: string;
+  body: string;
+  image?: string;
+}
+
 export interface Pillar {
   id: string;
   title: string;
   lede: string;
-  threads: { org: string; period: string; body: string }[];
+  threads: Thread[];
 }
 
 export const pillars: Pillar[] = [
   {
     id: 'healthcare',
     title: 'Healthcare',
-    lede: 'Robotics and instrumentation for biofabrication and cell biology — the work that put my name on two peer-reviewed papers.',
+    lede: 'Robotics and instrumentation for biofabrication, cell biology, and assistive devices.',
     threads: [
       {
         org: 'Harvard Medical School · Brigham and Women’s Hospital',
@@ -21,23 +28,6 @@ export const pillars: Pillar[] = [
         period: 'Jul 2021 — Feb 2022',
         body: 'Built the data-acquisition and signal-processing pipeline for an electrochemical biosensor inside a microfluidic bioreactor, giving researchers a continuous readout of stem-cell osteogenesis. Published in ACS Sensors (2024).',
       },
-    ],
-  },
-  {
-    id: 'space',
-    title: 'Space',
-    lede: 'Flight-experiment hardware and the electronics behind it — from a year-long ISS food-preservation study to an exoskeleton control loop.',
-    threads: [
-      {
-        org: 'Space Makers · Tecnológico de Monterrey',
-        period: 'Mar 2019 — Dec 2020',
-        body: 'SPES: synthesis of bio-nano polymers for enhanced surface-barrier properties in space. Designed the electronic and control system for a 12-month aerospace experiment testing a food-preservation solution. Presented at CONACES, the first National Congress of Space Activities, organized by the Mexican Aerospace Agency.',
-      },
-      {
-        org: 'United Nations / Airbus — ISS Bartolomeo platform',
-        period: '2020',
-        body: 'Pre-selected as one of three projects in the first cycle of “Access to Space with the ISS Bartolomeo Platform.”',
-      },
       {
         org: 'INDI',
         period: 'Aug — Dec 2019',
@@ -46,24 +36,37 @@ export const pillars: Pillar[] = [
     ],
   },
   {
+    id: 'space',
+    title: 'Space',
+    lede: 'Flight-experiment hardware and the electronics behind it.',
+    threads: [
+      {
+        org: 'Space Makers · Tecnológico de Monterrey',
+        period: 'Mar 2019 — Dec 2020',
+        body: 'SPES — synthesis of bio-nano polymers for enhanced surface-barrier properties in space. Designed the electronic and control system for a 12-month aerospace experiment testing a food-preservation solution. Presented at CONACES, the first National Congress of Space Activities, organized by the Mexican Aerospace Agency, and pre-selected as one of three projects in the first cycle of the United Nations / Airbus “Access to Space with the ISS Bartolomeo Platform.”',
+        image: '/media/research/Bartolomeo_BlankBackground.jpg',
+      },
+    ],
+  },
+  {
     id: 'manufacturing',
     title: 'Manufacturing',
-    lede: 'Where most of my career sits: production Go and Python test systems for high-voltage energy storage, humanoid robotics, and vehicles at Tesla.',
+    lede: 'Test systems for high-voltage energy storage, humanoid robotics, and vehicles at Tesla.',
     threads: [
       {
         org: 'Tesla · Energy — Software Development',
         period: 'Mar 2023 — Present',
-        body: 'Primary author of the shared Go instrument-driver and hardware-abstraction libraries (375+ commits, 9 vendors) that test systems in Fremont, Lathrop and Shanghai depend on. Top contributor on the Megapack thermal tester (projected USD 104M/year savings) and co-maintainer of a safety-controller FVT implementing the full ISO 14229 flashing sequence.',
+        body: 'Primary author of the shared Go instrument-driver and hardware-abstraction libraries that test systems across several factories depend on — drivers for nine instrument vendors, a layered SCPI/VISA architecture, config-driven station integration. Top software contributor on the Megapack thermal tester and co-maintainer of a safety-controller functional verification tester implementing the full ISO 14229 flashing sequence.',
       },
       {
         org: 'Tesla · Optimus',
         period: '2024',
-        body: 'Drove Optimus Charger EOL first-pass yield from 0% to 80% during NPI — ECU firmware debugging via CANape, DBC decoding, HEX analysis; AWS S3 as a centralized CAN-log trace store.',
+        body: 'Brought up the Optimus Charger end-of-line tester during NPI — ECU firmware debugging via CANape, DBC decoding and HEX analysis; AWS S3 as a centralized CAN-log trace store; structured JSON logging for machine-parseable failures.',
       },
       {
         org: 'Carrier Global · Frigus Bohn · Owens-Illinois',
         period: '2019 — 2022',
-        body: 'QA digitization with Power BI and NLP failure forecasting; a warehouse-management system that lifted efficiency 34%; logistics tooling.',
+        body: 'QA digitization with Power BI and NLP failure forecasting; a warehouse-management system built on Visual Studio and MySQL; logistics tooling.',
       },
     ],
   },

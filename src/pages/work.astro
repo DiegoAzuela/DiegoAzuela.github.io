@@ -29,7 +29,10 @@ import { pillars } from '../data/work.ts';
                   <p>{t.org}</p>
                   <p class="thread__period">{t.period}</p>
                 </div>
-                <p class="thread__body">{t.body}</p>
+                <div class="thread__body">
+                  <p>{t.body}</p>
+                  {t.image && <img class="thread__img" src={t.image} alt={t.org} loading="lazy" />}
+                </div>
               </article>
             ))}
           </div>
@@ -65,6 +68,12 @@ import { pillars } from '../data/work.ts';
   .thread__meta { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
   .thread__period { margin-top: 0.3rem; }
   .thread__body { color: var(--text-dim); max-width: var(--measure); }
+  .thread__img {
+    margin-top: 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    max-width: 22rem;
+  }
 
   .work__cta { margin-top: 3rem; font-family: var(--font-mono); font-size: var(--step--1); }
 
