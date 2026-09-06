@@ -1,0 +1,1 @@
+# Claude - Install all skills in this folder
