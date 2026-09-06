@@ -1,17 +1,13 @@
 ---
-import Base from '../layouts/Base.astro';
-import PageHeader from '../components/PageHeader.astro';
-import CvBody from '../components/CvBody.astro';
-import { site } from '../data/site.ts';
-import { summary } from '../data/cv.ts';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CvBody from '../../components/CvBody.astro';
+import { site } from '../../data/site.ts';
+import { summary } from '../../data/cv.ts';
 ---
 
 <Base title="Curriculum Vitae" description={summary}>
-  <PageHeader
-    eyebrow="Curriculum vitae"
-    title={site.fullName}
-    intro={summary}
-  />
+  <PageHeader eyebrow="Curriculum vitae" title={site.fullName} intro={summary} />
   <div class="container cv-page">
     <p class="cv-page__actions" data-reveal>
       <a href="/cv/Diego-Azuela-CV.pdf" class="link-underline">Download PDF</a>

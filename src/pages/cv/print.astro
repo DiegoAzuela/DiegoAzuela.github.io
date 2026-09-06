@@ -1,0 +1,219 @@
+---
+import { site } from '../../data/site.ts';
+import { summary, experience, research, education, skills } from '../../data/cv.ts';
+
+/** Split "Lead-in phrase: rest of sentence" so the lead can be bolded. */
+function splitLead(point: string): [string, string] {
+  const i = point.indexOf(': ');
+  if (i > 0 && i < 70) return [point.slice(0, i), point.slice(i + 2)];
+  return ['', point];
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.fullName} — CV</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      @page {
+        size: Letter;
+        margin: 1.5cm 1.6cm;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body {
+        font-family: 'Geist', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #1a1a1a;
+        background: #fff;
+        font-size: 9.5pt;
+        line-height: 1.4;
+      }
+      @font-face {
+        font-family: 'Geist';
+        src: url('/fonts/Geist-Regular.woff2') format('woff2');
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: 'Geist';
+        src: url('/fonts/Geist-SemiBold.woff2') format('woff2');
+        font-weight: 600;
+      }
+      @font-face {
+        font-family: 'Geist';
+        src: url('/fonts/Geist-Bold.woff2') format('woff2');
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: 20pt;
+        font-weight: 700;
+        color: #1f3a5f;
+        letter-spacing: -0.01em;
+      }
+      .role {
+        font-size: 11pt;
+        font-weight: 600;
+        color: #1f3a5f;
+        margin-top: 1pt;
+      }
+      .contact {
+        margin-top: 4pt;
+        font-size: 8.5pt;
+        color: #333;
+      }
+      .contact span { white-space: nowrap; }
+      .contact span + span::before { content: '   ·   '; color: #999; }
+
+      h2 {
+        font-size: 10pt;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #1f3a5f;
+        border-bottom: 1px solid #c9d3df;
+        padding-bottom: 2pt;
+        margin: 13pt 0 6pt;
+      }
+
+      .entry { margin-bottom: 7pt; }
+      .entry__line {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12pt;
+      }
+      .entry__title { font-weight: 700; }
+      .entry__title span { font-weight: 400; color: #333; }
+      .entry__when { font-size: 8.5pt; color: #555; white-space: nowrap; }
+      .entry__group { font-size: 8.5pt; font-style: italic; color: #555; margin-top: 1pt; }
+
+      ul { list-style: none; padding: 0; margin: 3pt 0 0; }
+      li {
+        position: relative;
+        padding-left: 10pt;
+        margin-top: 2.5pt;
+      }
+      li::before {
+        content: '';
+        position: absolute;
+        left: 2pt;
+        top: 4.5pt;
+        width: 3pt;
+        height: 3pt;
+        background: #1f3a5f;
+        border-radius: 50%;
+      }
+      li b { font-weight: 700; }
+
+      .skills-row { display: flex; gap: 8pt; margin-top: 2.5pt; }
+      .skills-row dt { font-weight: 700; flex: 0 0 5.4rem; }
+      .skills-row dd { flex: 1; }
+
+      .summary { margin-top: 2pt; text-align: justify; }
+      p, li, dd { orphans: 2; widows: 2; }
+      li { break-inside: avoid; }
+      .entry__line { break-after: avoid; }
+      h2 { break-after: avoid; }
+      section { break-inside: auto; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{site.fullName}</h1>
+      <p class="role">{site.role}</p>
+      <p class="contact">
+        <span>{site.location}</span>
+        <span>{site.phone}</span>
+        <span>{site.email}</span>
+        <span>{site.linkedin}</span>
+        <span>{site.github}</span>
+      </p>
+    </header>
+
+    <section>
+      <h2>Professional Summary</h2>
+      <p class="summary">{summary}</p>
+    </section>
+
+    <section>
+      <h2>Professional Experience</h2>
+      {
+        experience.map((r) => (
+          <div class="entry">
+            <div class="entry__line">
+              <span class="entry__title">
+                {r.title} <span>· {r.org}</span>
+              </span>
+              <span class="entry__when">
+                {r.period} · {r.location}
+              </span>
+            </div>
+            {r.group && <p class="entry__group">{r.group}</p>}
+            <ul>
+              {r.points.map((pt) => {
+                const [lead, rest] = splitLead(pt);
+                return <li>{lead ? <><b>{lead}:</b> {rest}</> : pt}</li>;
+              })}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2>Research Experience</h2>
+      {
+        research.map((r) => (
+          <div class="entry">
+            <div class="entry__line">
+              <span class="entry__title">
+                {r.title} <span>· {r.org}</span>
+              </span>
+              <span class="entry__when">
+                {r.period} · {r.location}
+              </span>
+            </div>
+            <ul>
+              {r.points.map((pt) => (
+                <li>{pt}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      {
+        education.map((e) => (
+          <div class="entry">
+            <div class="entry__line">
+              <span class="entry__title">
+                {e.degree} <span>· {e.org}</span>
+              </span>
+              <span class="entry__when">{e.period}</span>
+            </div>
+            <p class="entry__group">{e.detail}</p>
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <dl>
+        {
+          skills.map((s) => (
+            <div class="skills-row">
+              <dt>{s.group}</dt>
+              <dd>{s.items}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+  </body>
+</html>

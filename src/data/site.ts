@@ -4,6 +4,9 @@ export const site = {
   role: 'Engineer — Test & Systems',
   location: 'San Francisco, CA',
   email: 'diego.azuela@gmail.com',
+  phone: '(209) 401-7675',
+  linkedin: 'linkedin.com/in/diegoarnoldoazuelarosas',
+  github: 'github.com/DiegoAzuela',
   description:
     'Software engineer with 3+ years at Tesla building production Go and Python systems across high-voltage energy storage, humanoid robotics, and vehicle platforms. Published researcher at Harvard Medical School.',
   // Hero words — clickable, each jumps to a domain on the Work page.
