@@ -1,0 +1,241 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site.ts';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <a href="/" class="site-header__brand" aria-label="Home">DA</a>
+
+  <button
+    type="button"
+    class="menu-toggle"
+    aria-label="Open menu"
+    aria-controls="side-panel"
+    aria-expanded="false"
+    data-panel-open
+  >
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="panel-scrim" data-panel-close hidden></div>
+
+<aside id="side-panel" class="side-panel" aria-hidden="true">
+  <button type="button" class="side-panel__close" aria-label="Close menu" data-panel-close>
+    <span></span><span></span>
+  </button>
+
+  <nav class="side-panel__nav" aria-label="Primary">
+    <ul>
+      {
+        site.nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="side-panel__socials">
+    {
+      site.socials.map((s) => (
+        <a
+          href={s.href}
+          target={s.href.startsWith('http') ? '_blank' : undefined}
+          rel={s.href.startsWith('http') ? 'noopener' : undefined}
+          aria-label={s.label}
+        >
+          <Icon name={s.icon as any} size={18} />
+        </a>
+      ))
+    }
+  </div>
+</aside>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(var(--bg-0), transparent);
+    opacity: 0.9;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+  }
+  .site-header.is-scrolled {
+    background-color: color-mix(in srgb, var(--bg-0) 82%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom-color: var(--line);
+  }
+  .site-header.is-scrolled::before { opacity: 0; }
+  .site-header__brand,
+  .menu-toggle {
+    position: relative;
+    z-index: 1;
+  }
+  .site-header__brand {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+
+  .menu-toggle {
+    display: grid;
+    gap: 5px;
+    padding: 8px;
+    margin-right: -8px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 26px;
+    height: 1.5px;
+    background: var(--text);
+    transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
+  }
+
+  .panel-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    background: var(--bg-scrim);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+  }
+  .panel-scrim.is-visible { opacity: 1; }
+
+  .side-panel {
+    position: fixed;
+    inset: 0 0 0 auto;
+    z-index: 50;
+    width: min(320px, 82vw);
+    background: var(--bg-1);
+    border-left: 1px solid var(--line);
+    padding: 5.5rem clamp(1.5rem, 6vw, 2.5rem) 2rem;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.4s var(--ease);
+    visibility: hidden;
+  }
+  .side-panel.is-open {
+    transform: none;
+    visibility: visible;
+  }
+
+  .side-panel__close {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-content: center;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .side-panel__close span {
+    grid-area: 1 / 1;
+    width: 20px;
+    height: 1.5px;
+    background: var(--text);
+  }
+  .side-panel__close span:first-child { transform: rotate(45deg); }
+  .side-panel__close span:last-child { transform: rotate(-45deg); }
+
+  .side-panel__nav ul { list-style: none; padding: 0; }
+  .side-panel__nav li {
+    border-bottom: 1px solid var(--line);
+  }
+  .side-panel__nav a {
+    display: block;
+    padding: 0.95rem 0;
+    font-size: var(--step-1);
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: color 0.2s var(--ease), padding-left 0.25s var(--ease);
+  }
+  .side-panel__nav a:hover,
+  .side-panel__nav a[aria-current='page'] {
+    color: var(--text);
+    padding-left: 0.5rem;
+  }
+  .side-panel__nav a[aria-current='page'] { color: var(--accent); }
+
+  .side-panel__socials {
+    margin-top: auto;
+    padding-top: 2rem;
+    display: flex;
+    gap: 1.25rem;
+    color: var(--text-muted);
+  }
+  .side-panel__socials a { transition: color 0.2s var(--ease); }
+  .side-panel__socials a:hover { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .side-panel { transition: none; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-panel-open]');
+  const panel = document.getElementById('side-panel');
+  const scrim = document.querySelector<HTMLElement>('.panel-scrim');
+  const closers = document.querySelectorAll<HTMLElement>('[data-panel-close]');
+  let lastFocus: HTMLElement | null = null;
+
+  function open() {
+    lastFocus = document.activeElement as HTMLElement;
+    panel?.classList.add('is-open');
+    panel?.setAttribute('aria-hidden', 'false');
+    scrim?.removeAttribute('hidden');
+    requestAnimationFrame(() => scrim?.classList.add('is-visible'));
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    panel?.querySelector<HTMLElement>('a, button')?.focus();
+  }
+
+  function close() {
+    panel?.classList.remove('is-open');
+    panel?.setAttribute('aria-hidden', 'true');
+    scrim?.classList.remove('is-visible');
+    scrim?.addEventListener('transitionend', () => scrim?.setAttribute('hidden', ''), { once: true });
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    lastFocus?.focus();
+  }
+
+  toggle?.addEventListener('click', open);
+  closers.forEach((el) => el.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel?.classList.contains('is-open')) close();
+  });
+
+  const header = document.querySelector('.site-header');
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

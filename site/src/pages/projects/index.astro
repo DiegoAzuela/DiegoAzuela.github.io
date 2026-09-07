@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+import { projects } from '../../data/projects.ts';
+---
+
+<Base title="Projects" description="Personal projects by Diego Azuela.">
+  <PageHeader
+    eyebrow="Side work"
+    title="Projects"
+    intro="Things built outside work hours. Most of the systems work I do lives behind a firewall — this is what I can show."
+  />
+
+  <div class="container projects">
+    <ul class="proj-list" data-reveal>
+      {
+        projects.map((p) => (
+          <li class="proj">
+            <div class="proj__head">
+              <h2>{p.title}</h2>
+              {p.year && <span class="proj__year">{p.year}</span>}
+            </div>
+            <p class="proj__blurb">{p.blurb}</p>
+            <p class="proj__stack">{p.stack.join(' · ')}</p>
+            <p class="proj__links">
+              {p.repo && (
+                <a href={p.repo} target="_blank" rel="noopener" class="link-underline">
+                  Repository <Icon name="arrow-up-right" size={13} />
+                </a>
+              )}
+              {p.demo && (
+                <a href={p.demo} target="_blank" rel="noopener" class="link-underline">
+                  Live <Icon name="arrow-up-right" size={13} />
+                </a>
+              )}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .projects { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+  .proj-list { list-style: none; padding: 0; }
+  .proj { padding: 2rem 0; border-top: 1px solid var(--line); }
+  .proj:last-child { border-bottom: 1px solid var(--line); }
+  .proj__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .proj__head h2 { font-size: var(--step-2); }
+  .proj__year { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .proj__blurb { margin-top: 0.8rem; color: var(--text-dim); max-width: var(--measure); }
+  .proj__stack { margin-top: 0.8rem; font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .proj__links { margin-top: 1.1rem; display: flex; gap: 1.5rem; font-family: var(--font-mono); font-size: var(--step--1); }
+  .proj__links a { display: inline-flex; align-items: center; gap: 0.3rem; }
+</style>

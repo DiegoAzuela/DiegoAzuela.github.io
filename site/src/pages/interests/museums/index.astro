@@ -1,0 +1,48 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { museums } from '../../../data/museums.ts';
+---
+
+<Base title="Museums & places" description="Museums and landmarks Diego has visited, and the works worth the trip.">
+  <PageHeader
+    eyebrow="Interests"
+    title="Museums & places"
+    intro="Twelve places worth the ticket. Open one for my own photo and the pieces I keep thinking about."
+    back={{ href: '/interests', label: 'Interests' }}
+  />
+
+  <div class="container museums">
+    <div class="grid grid--3 museums__grid" data-reveal>
+      {
+        museums.map((m) => (
+          <a href={`/interests/museums/${m.slug}`} class="card">
+            <div class="card__media">
+              <img src={m.image} alt={`${m.name}, ${m.city}`} loading="lazy" />
+            </div>
+            <div class="card__body">
+              <span class="card__title">{m.name}</span>
+              <span class="card__meta">{m.city}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .museums { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+  .museums__grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  }
+  .museums__grid .card__media { aspect-ratio: 1 / 1; }
+  .museums__grid .card__body { min-height: 5.5rem; justify-content: flex-start; }
+  .museums__grid .card__title {
+    font-size: var(--step-0);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

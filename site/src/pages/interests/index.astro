@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+import { collections, notes } from '../../data/interests.ts';
+---
+
+<Base title="Interests" description="Museums, reading, painting, concerts, and the smaller things — flying, surfing, cooking, tea.">
+  <PageHeader
+    eyebrow="Outside work"
+    title="Interests"
+    intro="The things I spend weekends on. A few have enough behind them to deserve their own page; the rest are a photo and a line."
+  />
+
+  <div class="container interests">
+    <section class="interests__collections" data-reveal>
+      {
+        collections.map((c) => (
+          <a href={c.href} class="col">
+            <div class="col__text">
+              <h2>{c.title}</h2>
+              <p>{c.blurb}</p>
+            </div>
+            <div class="col__end">
+              {c.count && <span class="col__count">{c.count}</span>}
+              <Icon name="arrow-up-right" size={18} />
+            </div>
+          </a>
+        ))
+      }
+    </section>
+
+    <section class="interests__notes" data-reveal>
+      <h2 class="interests__label">Also</h2>
+      <div class="grid grid--3">
+        {
+          notes.map((n) => (
+            <figure class={`note${n.image ? '' : ' note--text'}`}>
+              {n.image ? (
+                <div class="note__media">
+                  <img src={n.image} alt={n.title} loading="lazy" />
+                </div>
+              ) : null}
+              <figcaption>
+                <span class="note__title">
+                  {n.title}
+                  {n.status && <span class="note__tag">{n.status}</span>}
+                </span>
+                <span class="note__caption">{n.caption}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .interests { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+
+  .interests__collections { display: grid; border-top: 1px solid var(--line); }
+  .col {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-dim);
+    transition: padding-left 0.25s var(--ease), color 0.2s var(--ease);
+  }
+  .col:hover { padding-left: 0.6rem; color: var(--text); }
+  .col__text h2 { font-size: var(--step-2); color: var(--text); }
+  .col__text p { margin-top: 0.3rem; max-width: 40ch; }
+  .col__end { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); flex-shrink: 0; }
+  .col__count { font-family: var(--font-mono); font-size: var(--step--1); }
+  .col:hover .col__end { color: var(--accent); }
+
+  .interests__notes { margin-top: clamp(3rem, 8vw, 5rem); }
+  .interests__label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .note { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius); overflow: clip; }
+  .note__media { aspect-ratio: 4 / 3; background: var(--bg-2); }
+  .note__media img { width: 100%; height: 100%; object-fit: cover; }
+  .note figcaption { padding: 1rem 1.1rem 1.2rem; display: grid; gap: 0.3rem; }
+  .note--text figcaption { padding-block: 1.6rem; }
+  .note__title { font-weight: 600; color: var(--text); font-family: var(--font-sans); font-size: var(--step-0); display: flex; align-items: center; gap: 0.6rem; }
+  .note__tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    border: 1px solid var(--accent-soft);
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+  }
+  .note__caption { color: var(--text-muted); }
+
+  @media (max-width: 600px) {
+    .col { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+  }
+</style>
