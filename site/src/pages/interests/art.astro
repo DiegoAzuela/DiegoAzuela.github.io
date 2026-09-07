@@ -31,16 +31,6 @@ const fmt = (d?: string) =>
           </figure>
         ))
       }
-
-      <figure class="canvas canvas--easel" data-reveal>
-        <div class="easel" aria-hidden="true">
-          <svg viewBox="0 0 200 220" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-            <path d="M40 20h120v90H40z" fill="var(--bg-2)" />
-            <path d="M100 110v70M100 175l-55 30M100 175l55 30M55 40h90" stroke-width="2" opacity="0.6" />
-            <path d="M45 130h110" />
-          </svg>
-        </div>
-      </figure>
     </div>
   </div>
 </Base>
@@ -70,14 +60,4 @@ const fmt = (d?: string) =>
   .canvas__title { font-weight: 600; font-size: var(--step-1); }
   .canvas__date { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
   .canvas__note { color: var(--text-dim); }
-
-  .canvas--easel .easel {
-    aspect-ratio: 1 / 1;
-    display: grid;
-    place-items: center;
-    border: 1px dashed var(--line-strong);
-    border-radius: var(--radius-sm);
-    color: var(--text-muted);
-  }
-  .canvas--easel svg { width: 45%; }
 </style>
