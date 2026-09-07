@@ -1,5 +1,5 @@
 export const site = {
-  name: 'Diego A Azuela R',
+  name: 'Diego Arnoldo Azuela Rosas',
   fullName: 'Diego Arnoldo Azuela Rosas',
   role: 'Engineer — Test & Systems',
   location: 'San Francisco, CA',
