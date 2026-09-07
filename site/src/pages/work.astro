@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { pillars } from '../data/work.ts';
+---
+
+<Base
+  title="Work"
+  description="Three domains I keep working in: healthcare robotics, space experiment hardware, and manufacturing test systems."
+>
+  <PageHeader
+    eyebrow="Professional"
+    title="Three domains"
+    intro="The through-line of my career is instrumentation and control software — the code that makes hardware measurable, testable, and safe. It has shown up in three places."
+  />
+
+  <div class="container work">
+    {
+      pillars.map((p) => (
+        <section id={p.id} class="pillar" data-reveal>
+          <div class="pillar__head">
+            <h2>{p.title}</h2>
+            <p class="prose">{p.lede}</p>
+          </div>
+          <div class="pillar__threads">
+            {p.threads.map((t) => (
+              <article class="thread">
+                <div class="thread__meta">
+                  <p>{t.org}</p>
+                  <p class="thread__period">{t.period}</p>
+                </div>
+                <div class="thread__body">
+                  <p>{t.body}</p>
+                  {t.image && <img class="thread__img" src={t.image} alt={t.org} loading="lazy" />}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+
+    <p class="work__cta" data-reveal>
+      <a href="/cv" class="link-underline">Full CV →</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .work { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+  .pillar {
+    padding-block: clamp(2rem, 5vw, 3rem);
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 5rem;
+  }
+  .pillar:first-child { border-top: 0; padding-top: 0; }
+  .pillar__head { max-width: 46rem; margin-bottom: 2.5rem; }
+  .pillar__head h2 { font-size: var(--step-2); margin-bottom: 0.9rem; }
+
+  .pillar__threads { display: grid; gap: 1.5rem; }
+  .thread {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .thread__meta { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); }
+  .thread__period { margin-top: 0.3rem; }
+  .thread__body { color: var(--text-dim); max-width: var(--measure); }
+  .thread__img {
+    margin-top: 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    max-width: 22rem;
+  }
+
+  .work__cta { margin-top: 3rem; font-family: var(--font-mono); font-size: var(--step--1); }
+
+  @media (max-width: 720px) {
+    .thread { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  back?: { href: string; label: string };
+}
+const { eyebrow, title, intro, back } = Astro.props;
+---
+
+<header class="page-header container" data-reveal>
+  {back ? (
+    <a href={back.href} class="page-header__back">← {back.label}</a>
+  ) : (
+    <p class="eyebrow">{eyebrow}</p>
+  )}
+  <h1>{title}</h1>
+  {intro && <p class="page-header__intro">{intro}</p>}
+</header>

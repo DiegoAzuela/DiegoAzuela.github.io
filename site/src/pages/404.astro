@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Not found" description="That page doesn’t exist.">
+  <section class="nf">
+    <p class="eyebrow">404</p>
+    <h1>Nothing here</h1>
+    <p class="prose">That page moved, or never existed. Head back to the start.</p>
+    <p><a href="/" class="link-underline">Home</a></p>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 70vh;
+    display: grid;
+    align-content: center;
+    gap: 1rem;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 8rem clamp(1.25rem, 5vw, 2.5rem) 4rem;
+  }
+  .nf h1 { font-size: var(--step-3); }
+  .nf a { font-family: var(--font-mono); font-size: var(--step--1); }
+</style>

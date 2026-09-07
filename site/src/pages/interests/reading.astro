@@ -1,0 +1,80 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+import { books, goodreads } from '../../data/books.ts';
+---
+
+<Base title="Reading" description="Books Diego has recently read.">
+  <PageHeader
+    eyebrow="Interests"
+    title="Reading"
+    intro="Recently finished. The full running list lives on Goodreads."
+    back={{ href: '/interests', label: 'Interests' }}
+  />
+
+  <div class="container reading">
+    <p class="reading__gr" data-reveal>
+      <a href={goodreads} target="_blank" rel="noopener" class="link-underline">
+        Goodreads — Diego Azuela <Icon name="arrow-up-right" size={13} />
+      </a>
+    </p>
+
+    <ul class="books" data-reveal>
+      {
+        books.map((b) => (
+          <li class="book">
+            <div class={`book__cover${b.cover ? '' : ' book__cover--text'}`}>
+              {b.cover ? (
+                <img src={b.cover} alt={`${b.title} cover`} loading="lazy" />
+              ) : (
+                <span>{b.title}</span>
+              )}
+            </div>
+            <div class="book__meta">
+              <span class="book__title">{b.title}</span>
+              <span class="book__author">{b.author}</span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .reading { padding-block: clamp(2.25rem, 5vw, 3.25rem) clamp(4rem, 9vw, 7rem); }
+  .reading__gr { font-family: var(--font-mono); font-size: var(--step--1); margin-bottom: 2.5rem; }
+  .reading__gr a { display: inline-flex; align-items: center; gap: 0.3rem; }
+
+  .books {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .book__cover {
+    aspect-ratio: 2 / 3;
+    border-radius: var(--radius-sm);
+    overflow: clip;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    box-shadow: var(--shadow);
+  }
+  .book__cover img { width: 100%; height: 100%; object-fit: cover; }
+  .book__cover--text {
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: var(--step-0);
+    color: var(--text-dim);
+    background:
+      linear-gradient(160deg, var(--bg-2), var(--bg-1));
+  }
+  .book__meta { margin-top: 0.7rem; display: grid; gap: 0.15rem; }
+  .book__title { font-weight: 500; font-size: var(--step-0); }
+  .book__author { color: var(--text-muted); font-size: var(--step--1); }
+</style>

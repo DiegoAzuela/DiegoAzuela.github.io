@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { quotes } from '../../data/quotes.ts';
+---
+
+<Base title="Quotes" description="Lines Diego keeps close.">
+  <PageHeader
+    eyebrow="Interests"
+    title="Quotes"
+    intro="Lines I keep close."
+    back={{ href: '/interests', label: 'Interests' }}
+  />
+
+  <div class="container quotes">
+    {
+      quotes.map((q) => (
+        <blockquote class="quote" data-reveal>
+          <p>{q.text}</p>
+          <cite>{q.attribution}</cite>
+        </blockquote>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .quotes { padding-block: clamp(4rem, 9vw, 7rem); display: grid; gap: clamp(3rem, 8vw, 5rem); }
+  .quote { max-width: 34rem; }
+  .quote p {
+    font-size: var(--step-2);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+  .quote p::before { content: '“'; color: var(--accent); }
+  .quote p::after { content: '”'; color: var(--accent); }
+  .quote cite {
+    display: block;
+    margin-top: 1.2rem;
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+  .quote cite::before { content: '— '; }
+</style>

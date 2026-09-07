@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import CvBody from '../components/CvBody.astro';
+import { site } from '../data/site.ts';
+import { summary } from '../data/cv.ts';
+---
+
+<Base bareFooter>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow">{site.role}</p>
+      <h1 class="hero__name">{site.name}</h1>
+      <p class="hero__domains">
+        {
+          site.domains.map((d, i) => (
+            <>
+              {i > 0 && <span class="hero__sep">·</span>}
+              <a href={d.href} class="link-underline">
+                {d.label}
+              </a>
+            </>
+          ))
+        }
+      </p>
+    </div>
+    <a href="#cv" class="hero__scroll" aria-label="Scroll to CV">
+      <Icon name="arrow-down" size={18} />
+    </a>
+  </section>
+
+  <!-- ================= CV ================= -->
+  <div class="container cv" id="cv">
+    <header class="cv__head" data-reveal>
+      <p class="eyebrow">Curriculum vitae</p>
+      <h2>{site.fullName}</h2>
+      <p class="prose cv__summary">{summary}</p>
+      <p class="cv__actions">
+        <a href="/cv" class="link-underline">Full CV page</a>
+        <span class="hero__sep">·</span>
+        <a href="/cv/Diego-Azuela-CV.pdf" class="link-underline">Download PDF</a>
+      </p>
+    </header>
+
+    <CvBody />
+  </div>
+
+  <Footer />
+</Base>
+
+<style>
+  /* ---------- HERO: recreates the two-rule + name reveal ---------- */
+  .hero {
+    position: relative;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 6rem 1.5rem 4rem;
+    overflow: hidden;
+  }
+  .hero__inner {
+    text-align: center;
+    max-width: 40rem;
+  }
+  .hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0;
+    animation: fade-up 0.8s var(--ease) 0.9s forwards;
+  }
+  .hero__name {
+    position: relative;
+    font-size: var(--step-4);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin: 1.4rem 0;
+    padding: 1.4rem 0;
+    opacity: 0.001;
+    transform: scale(0.94);
+    animation: hero-name 0.9s var(--ease) 0.2s forwards;
+  }
+  .hero__name::before,
+  .hero__name::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--line-strong);
+    transform: translateX(-50%);
+    animation: rule-draw 0.85s var(--ease) 0.55s forwards;
+  }
+  .hero__name::before { top: 0; }
+  .hero__name::after { bottom: 0; }
+
+  .hero__domains {
+    font-size: var(--step-1);
+    color: var(--text-dim);
+    opacity: 0;
+    animation: fade-up 0.8s var(--ease) 1s forwards;
+  }
+  .hero__sep { color: var(--text-muted); margin-inline: 0.6rem; }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    opacity: 0;
+    animation: fade-up 1s var(--ease) 1.4s forwards;
+  }
+  .hero__scroll:hover { color: var(--accent); }
+
+  @keyframes hero-name { to { opacity: 1; transform: none; } }
+  @keyframes rule-draw { to { width: min(22rem, 70vw); } }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__eyebrow, .hero__name, .hero__domains, .hero__scroll {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    .hero__name::before, .hero__name::after { width: min(22rem, 70vw); animation: none; }
+  }
+
+  /* ---------- CV ---------- */
+  .cv { padding-block: clamp(4rem, 9vw, 7rem); }
+  .cv__head { max-width: 52rem; margin-bottom: clamp(3rem, 7vw, 5rem); }
+  .cv__head h2 { font-size: var(--step-3); margin: 0.6rem 0 1.4rem; }
+  .cv__summary { color: var(--text-dim); }
+  .cv__actions { margin-top: 1.5rem; font-family: var(--font-mono); font-size: var(--step--1); }
+</style>
