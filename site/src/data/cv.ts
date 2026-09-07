@@ -1,5 +1,5 @@
 export const summary =
-  'Software engineer with 3+ years at Tesla building production Go and Python systems across high-voltage energy storage, humanoid robotics, and vehicle platforms. Primary author and maintainer of the shared Go instrument-driver and hardware-abstraction libraries that test systems across several factories depend on. Depth in UDS / ISO 14229 diagnostics and firmware download, CAN, gRPC services, concurrent state-machine architectures with strict timeout and fault semantics, and the SQL and analytics layer that turns test data into decisions.';
+  'Software engineer with 3+ years at Tesla building production Go and Python systems across high-voltage energy storage, humanoid robotics, and vehicle platforms.';
 
 export interface Role {
   org: string;
