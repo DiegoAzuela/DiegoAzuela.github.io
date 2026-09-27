@@ -1,7 +1,7 @@
 export const site = {
   name: 'Diego Arnoldo Azuela Rosas',
   fullName: 'Diego Arnoldo Azuela Rosas',
-  role: 'Engineer — Test & Systems',
+  role: 'Software Engineer — HIL',
   location: 'San Francisco, CA',
   email: 'diego.azuela@gmail.com',
   phone: '(209) 401-7675',

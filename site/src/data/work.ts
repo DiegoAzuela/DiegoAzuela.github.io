@@ -54,9 +54,14 @@ export const pillars: Pillar[] = [
     lede: 'Test systems for high-voltage energy storage, humanoid robotics, and vehicles at Tesla.',
     threads: [
       {
+        org: 'Tesla · Energy — Megapack3, Thermal Systems',
+        period: 'Sep 2026 — Present',
+        body: 'Software Engineer on Megapack3’s Thermal Systems team. Primary author of the shared Go instrument-driver and hardware-abstraction libraries that test systems across several factories depend on — drivers for nine instrument vendors, a layered SCPI/VISA architecture, config-driven station integration. Top software contributor on the Megapack thermal and coolant-flow test system; co-authored its Pilz safety program and obtained safety buyoffs at 220V and 250V.',
+      },
+      {
         org: 'Tesla · Energy — Software Development',
-        period: 'Mar 2023 — Present',
-        body: 'Primary author of the shared Go instrument-driver and hardware-abstraction libraries that test systems across several factories depend on — drivers for nine instrument vendors, a layered SCPI/VISA architecture, config-driven station integration. Top software contributor on the Megapack thermal tester and co-maintainer of a safety-controller functional verification tester implementing the full ISO 14229 flashing sequence.',
+        period: 'Mar 2023 — Sep 2026',
+        body: 'Launch Engineer building shared test-system software: a layered SCPI/VISA instrument-driver platform and hardware-abstraction layer, and a safety-controller functional verification tester implementing the full ISO 14229 flashing sequence.',
       },
       {
         org: 'Tesla · Optimus',
