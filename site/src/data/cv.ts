@@ -13,13 +13,22 @@ export interface Role {
 export const experience: Role[] = [
   {
     org: 'Tesla, Inc.',
-    title: 'Launch Engineer',
-    period: 'Mar 2023 — Present',
+    title: 'Software Engineer',
+    period: 'Sep 2026 — Present',
     location: 'California',
-    group: 'Energy Division — Software Development',
+    group: 'Energy Division — Megapack3, Thermal Systems',
     points: [
       'Instrument Driver & HAL Platform (Golang): primary author and top contributor of two shared Go libraries — a VISA/SCPI instrument-driver layer and a hardware-abstraction layer — consumed by test systems across multiple factories. Drivers for nine instrument vendors (Chroma, Keysight, Keithley, TDK, Itech, Magna, Siglent, NI, WAGO). Designed the 3-layer architecture and the SCPI command library for the Chroma hipot family; lifted instrument config into the shared HAL so new stations integrate by config, not code.',
       'Megapack Thermal System (Golang, SCPI, ECU, Linux): top software contributor on an HV test system covering Hipot, LV, HV and pneumatic actuation for coolant flow and leak detection; owned thermal and coolant-flow health monitoring. Co-authored the Pilz safety program and obtained safety buyoffs at 220V and 250V.',
+    ],
+  },
+  {
+    org: 'Tesla, Inc.',
+    title: 'Launch Engineer',
+    period: 'Mar 2023 — Sep 2026',
+    location: 'California',
+    group: 'Energy Division — Software Development',
+    points: [
       'Safety Controller FVT (Golang, UDS, gRPC, CAN): co-maintainer of a functional verification tester built as a state-machine application fronting a gRPC/protobuf bridge to CAN and UDS services. Implemented the full ISO 14229 flashing sequence — security access, bootloader entry by ECU reset with tester-present, application download under a dedicated context, genealogy writes by DID. Median-of-N sampling with CAN-MUX-aligned timing to prevent aliasing.',
       'BMS Communication Station (Python, CAN): CAN-bus polling station catching broken BMS chain-communication faults invisible to existing end-of-line testers.',
       'Manufacturing Data & OEE Analytics (SQL, Power BI, Python): architected a PLC-to-SQL diagnostic pipeline across the HV converter testers; maintain a large SQL analytics library covering failure-mode analysis, SCADA availability and OEE.',
